@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!--mybatis代码生成器配置文件-->
+<generatorConfiguration>
+
+    <!--targetRuntime项选择MyBatis3会生成比较详细的接口，也可使用MyBatis3Simple来生成最基本的增删改查-->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/spdatabase?serverTimezone=GMT"
+                        userId="root"
+                        password="123456">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--生成的对应于数据表的实体类文件，放在domain文件夹下-->
+        <javaModelGenerator targetPackage="com.plateform.entity"
+                            targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--生成的到映射xml文件，放在resource/mapper文件夹下-->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--生成的dao接口文件，放在dao文件夹下-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.plateform.dao"
+                             targetProject=".\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--表名映射-->
+        <!--<table tableName="spt_login" domainObjectName="Login"/>-->
+        <!--<table tableName="spt_member" domainObjectName="Member"/>-->
+        <!--<table tableName="spt_hres" domainObjectName="Hres"/>-->
+        <!--<table tableName="spt_sres" domainObjectName="Sres"/>-->
+        <!--<table tableName="spt_tech" domainObjectName="Tech"/>-->
+        <!--<table tableName="spt_user" domainObjectName="User"/>-->
+        <table tableName="spt_demand" domainObjectName="Demand"/>
+        <!--<table tableName="spt_advice" domainObjectName="Advice"/>-->
+        <!--<table tableName="spt_biddoc" domainObjectName="Biddoc"/>-->
+        <!--<table tableName="spt_bid" domainObjectName="Bid"/>-->
+        <!--<table tableName="spt_admin" domainObjectName="Admin"/>-->
+
+        <!--<table tableName="spt_permission" domainObjectName="Permission"/>-->
+        <!--<table tableName="spp_member" domainObjectName="Member"/>-->
+        <!--<table tableName="spp_hres" domainObjectName="Hres"/>-->
+        <!--<table tableName="spp_sres" domainObjectName="Sres"/>-->
+        <!--<table tableName="spp_tech" domainObjectName="Tech"/>-->
+        <!--<table tableName="spt_trans" domainObjectName="Trans"/>-->
+
+        <table tableName="spt_order" domainObjectName="Order"/>
+
+
+    </context>
+</generatorConfiguration>
