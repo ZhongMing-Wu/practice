@@ -25,7 +25,7 @@ public:
 	}
 
 	ListNode* reversePart(ListNode* start, int k, ListNode* &tail) {
-		ListNode *first = NULL, *second = NULL, *third = NULL;  //nexstStart 是下一部分链表的头指针
+		ListNode *first = NULL, *second = NULL, *third = NULL;  //third 是下一部分链表的头指针
 		first = start;
 		second = first->next;
 		first->next = NULL;
