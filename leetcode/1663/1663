@@ -1,0 +1,29 @@
+class Solution {
+    public String getSmallestString(int n, int k) {
+        char[] charAns = new char[n];
+        for(int i = 0; i < n; i++) {
+            charAns[i] = 'a';
+        }
+        int curLeft = k - n, operationIndex = n - 1;
+        while(curLeft != 0) {
+            if(curLeft > 25) {
+                curLeft -= 25;
+                charAns[operationIndex] = 'z';
+                operationIndex--;
+                continue;
+            }
+            charAns[operationIndex] = asciiToChar('a' + curLeft);
+            curLeft = 0;
+        }
+        StringBuilder sb = new StringBuilder();
+        for(char c : charAns) {
+            sb.append(c);
+        }
+        return sb.toString();
+    }
+
+    private char asciiToChar(int ascii) {
+        char c = (char) ascii;
+        return c;
+    }
+}
