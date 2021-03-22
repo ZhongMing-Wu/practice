@@ -17,6 +17,7 @@ class Solution {
                 ans = Math.min(ans, index - candidate.peekFirst());
                 candidate.pollFirst();
             }
+            // 当前 index > candidate.peekLast(), 如果 preSum[index] <= preSum[candidate.peekLast()]，那么前者一定优于后者，后者直接淘汰。
             while(!candidate.isEmpty() && preSum[index] <= preSum[candidate.peekLast()]) {
                 candidate.pollLast();
             }
