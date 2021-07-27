@@ -1,33 +1,38 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        heapSort(nums);
+        mergeSort(nums, 0, nums.length - 1);
         return nums;
     }
 
-    private void heapSort(int[] nums) {
-        int n = nums.length;
-        for(int i = n / 2; i >= 0; --i) {
-            adjustHeap(nums, i, n);
-        }
-        for(int i = n - 1; i >= 0; --i) {
-            int temp = nums[i];
-            nums[i] = nums[0];
-            nums[0] = temp;
-            adjustHeap(nums, 0, i);
+    private void mergeSort(int[] nums, int left, int right) {
+        if(left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(nums, left, mid);
+            mergeSort(nums, mid + 1, right);
+            merge(nums, left, mid, mid + 1, right);
         }
     }
-    private void adjustHeap(int[] nums, int index, int len) {
-        int val = nums[index];
-        for(int i = index * 2; i < len; i *= 2) {
-            if(i + 1 < len && nums[i] < nums[i + 1]) {
-                ++i;
+
+    private void merge(int[] nums, int l1, int r1, int l2, int r2) {
+        int[] tempArray = new int[r2 - l1 + 1];
+        int left = l1, right = r2, tempIndex = 0;
+        while(l1 <= r1 && l2 <= r2) {
+            if(nums[l1] < nums[l2]) {
+                tempArray[tempIndex++] = nums[l1++];
+            } else {
+                tempArray[tempIndex++] = nums[l2++];
             }
-            if(val >= nums[i]) {
-                break;
-            }
-            nums[index] = nums[i];
-            index = i;
         }
-        nums[index] = val;
+
+        while(l1 <= r1) {
+            tempArray[tempIndex++] = nums[l1++];
+        }
+        while(l2 <= r2) {
+            tempArray[tempIndex++] = nums[l2++];
+        }
+
+        for(int i = 0;left <= right; ++left, ++i) {
+            nums[left] = tempArray[i];
+        }
     }
 }
