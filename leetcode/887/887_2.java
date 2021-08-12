@@ -1,33 +1,28 @@
 class Solution {
-    public int superEggDrop(int K, int N) {
-        int[][] dp = new int[K + 1][N + 1];
-        int left, right, middle;
-        for(int k = 1; k <= K; k++) {
-            for(int n = 1; n <= N; n++) {
-                if(k == 1) {
-                    dp[k][n] = n;
+    public int superEggDrop(int k, int n) {
+        int[][] dp = new int[k + 1][n + 1];
+        for(int i = 1; i <= k; i++) {
+            for(int j = 1; j <= n; j++) {
+                if(i == 1) {
+                    dp[i][j] = j;
+                    continue;
                 }
-                else {
-                    dp[k][n] = Integer.MAX_VALUE;
-                    left = 1;
-                    right = n;
-                    while(left <= right) {
-                        middle = ( left + right) / 2;
-                        if(dp[k - 1][middle - 1] < dp[k][n - middle]) {
-                            left = middle + 1;
-                        }
-                        else if(dp[k - 1][middle - 1] > dp[k][n - middle]) {
-                            right = middle - 1;
-                        }
-                        else {
-                            dp[k][n] = dp[k - 1][middle - 1] + 1;
-                            break;
-                        }
-                        dp[k][n] = Math.min(dp[k][n], Math.max(dp[k - 1][middle - 1], dp[k][n - middle]) + 1);
+                int left = 1, right = j, mid = 0;
+                while(left <= right) {
+                    mid = (right - left) / 2 + left;
+                    if(dp[i - 1][mid - 1] > dp[i][j - mid]) {
+                        right = mid - 1;
+                    }
+                    if(dp[i - 1][mid - 1] < dp[i][j - mid]) {
+                        left = mid + 1;
+                    }
+                    if(dp[i - 1][mid - 1] == dp[i][j - mid]) {
+                        break;
                     }
                 }
+                dp[i][j] = Math.max(dp[i - 1][mid - 1], dp[i][j - mid]) + 1;
             }
         }
-        return dp[K][N];
+        return dp[k][n];
     }
 }

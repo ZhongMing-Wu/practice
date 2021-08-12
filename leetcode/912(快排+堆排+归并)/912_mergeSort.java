@@ -6,7 +6,7 @@ class Solution {
 
     private void mergeSort(int[] nums, int left, int right) {
         if(left < right) {
-            int mid = (left + right) / 2;
+            int mid = (right - left) / 2 + left;
             mergeSort(nums, left, mid);
             mergeSort(nums, mid + 1, right);
             merge(nums, left, mid, mid + 1, right);
