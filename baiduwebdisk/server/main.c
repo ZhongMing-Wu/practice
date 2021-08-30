@@ -14,7 +14,7 @@ int main(int argc,char *argv[]){
 	int socketFd,dataLen,operateLen;
 	pipe(pipeFd);
 	while(fork()){
-		signal(SIGUSR1,sigFunc);
+		signal(SIGINT,sigFunc);
 		int status;
 		close(pipeFd[0]);
 		wait(&status);

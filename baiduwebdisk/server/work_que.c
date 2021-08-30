@@ -9,7 +9,7 @@ void queInit(pQueue_t que,int qCapacity){
 void pthreadQueInit(pthreadQue_t *que,int qCapacity){
 	bzero(que,sizeof(queue_t));
 	que->queCapacity=qCapacity;
-	pthread_utexm_init(&que->mutex,NULL);
+	pthread_mutex_init(&que->mutex,NULL);
 	return;
 }
 void queInsert(pQueue_t que,pNode_t newNode){
